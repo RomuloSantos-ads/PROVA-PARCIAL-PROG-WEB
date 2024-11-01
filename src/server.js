@@ -1,7 +1,8 @@
 const express = require('express');
 const sequelize = require('./config/database');
-const userRoutes = require('./routes/userRoutes');
-const pordutosRouter = require('./routes/produtosRoutes')
+const pordutosRouter = require('./routes/produtosRoutes');
+const UserRoutes = require('./routes/UserRoutes');
+const Connection = require('./config/database');
 
 const app = express();
 
@@ -9,15 +10,15 @@ const port = 3000;
 const host = 'localhost';
 
 app.use(express.json());
-app.use(userRoutes);
+app.use(UserRoutes);
 app.use(pordutosRouter);
 
-sequelize.authenticate()
+Connection.authenticate()
   .then(() => console.log('Conectado ao banco de dados!'))
   .catch(err => console.error('Não foi possível conectar ao banco de dados:', err));
 
 (async () => {
-    await sequelize.sync({ force: false }); 
+    await Connection.sync({ force: false }); 
     console.log("Tabelas sincronizadas!");
   })();
 

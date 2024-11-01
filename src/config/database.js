@@ -1,8 +1,11 @@
 const {Sequelize} = require ('sequelize');
 
-const sequelize = new Sequelize('crud_db', 'root', 'fac2024', {
-    host: 'localhost',
+const Connection = new Sequelize({
     dialect:'mysql',
+    host: 'localhost',
+    username: 'root',
+    password: 'fac2024',
+    database: 'crud_db',
 });
 
-module.exports = sequelize;
+module.exports = Connection;

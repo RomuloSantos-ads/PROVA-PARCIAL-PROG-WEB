@@ -1,7 +1,11 @@
 const {DataTypes} = require('sequelize');
-const sequelize = require('../config/database');
+const Connection = require('../config/database');
+const TipoUsuario = require('./tipoUsuario');
 
-const User = sequelize.define('User', {
+
+const User = Connection.define(
+    'User', {
+
     nome:{
         type: DataTypes.STRING,
         allowNull: false
@@ -11,13 +15,32 @@ const User = sequelize.define('User', {
         allowNull: false,
         unique: true
     },
-    idade:{
-        type: DataTypes.INTEGER,
+    cpf:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true
+    },
+    data_nascimento:{
+        type: DataTypes.DATEONLY,
         allowNull: false
     },
-   }, {
-        timestamps: false,
-        tableName: 'Users'
+    genero:{
+        type:DataTypes.STRING,
+        allowNull: false
+    },
+    tipo_usuario_id:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references:{
+            model: TipoUsuario,
+            key: 'id'
+        }  
+    }
+   }, 
+   {
+    tableName: 'Usuario',
+   
+       
 });
 
 

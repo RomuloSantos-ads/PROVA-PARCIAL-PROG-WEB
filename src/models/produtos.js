@@ -1,7 +1,10 @@
 const {DataTypes} = require('sequelize');
-const sequelize = require('../config/database');
+const Connection = require('../config/database');
+const Categoria = require('./categoria');
 
-const Produtos = sequelize.define('Produtos', {
+const Produtos = Connection.define(
+    'Produtos', {
+
     nome:{
         type: DataTypes.STRING,
         allowNull: false
@@ -19,9 +22,19 @@ const Produtos = sequelize.define('Produtos', {
         type: DataTypes.INTEGER,
         allowNull:false
     },
-   }, {
+    id_categoria:{
+        type: DataTypes.INTEGER,
+        allowNull:false,
+        references:{
+            model: Categoria,
+            key: 'id'
+        }
+    }
+   }, 
+    {
         timestamps: false,
         tableName: 'Produtos'
-});
+    }
+);
 
 module.exports = Produtos;
