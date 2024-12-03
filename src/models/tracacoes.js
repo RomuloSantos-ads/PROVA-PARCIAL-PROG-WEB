@@ -7,7 +7,7 @@ const Transacoes = Connection.define(
     {
         codigoTransacao:{
             type: DataTypes.INTEGER,
-            autoIncrement: true
+            allowNull: false
         },
         dataTransacao: {
             type: DataTypes.DATEONLY,
@@ -21,7 +21,9 @@ const Transacoes = Connection.define(
             type: DataTypes.FLOAT,
             allowNull: false
         },
-
+    },
+    {
+        tableName: 'Trasacoes',
     }
 )
 

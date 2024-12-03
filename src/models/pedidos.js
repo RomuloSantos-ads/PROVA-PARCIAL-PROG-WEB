@@ -1,5 +1,8 @@
 const {DataTypes} = require ('sequelize');
 const Connection = require ('../config/database');
+const User = require('./user');
+const TipoUsuario = require('./tipoUsuario');
+const Transacoes = require('./tracacoes');
 
 
 const Pedido = Connection.define(
@@ -8,7 +11,6 @@ const Pedido = Connection.define(
         codigo:{
             type: DataTypes.INTEGER,
             allowNull: false,
-            autoIncrement: true,
             unique: true
         },
         data_pedido:{
@@ -31,7 +33,7 @@ const Pedido = Connection.define(
             type: DataTypes.INTEGER,
             allowNull: false,
             references:{
-                model: 'User',
+                model: User,
                 key:'id'
             }
         },
@@ -39,7 +41,7 @@ const Pedido = Connection.define(
             type: DataTypes.INTEGER,
             allowNull: false,
             references:{
-                model:'TipoPagamento',
+                model: TipoUsuario,
                 key:'id'
             }
         },
@@ -47,7 +49,7 @@ const Pedido = Connection.define(
             type: DataTypes.INTEGER,
             allowNull: false,
             references:{
-                model: 'Transacoes',
+                model: Transacoes,
                 key: 'id'
             }
         }

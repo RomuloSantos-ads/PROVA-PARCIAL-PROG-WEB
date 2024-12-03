@@ -35,10 +35,14 @@ const User = Connection.define(
             model: TipoUsuario,
             key: 'id'
         }  
+    },
+    senha: {
+        type: DataTypes.STRING,
+        allowNull: false,
     }
    }, 
    {
-    tableName: 'Usuario',
+    tableName: 'User',
    
        
 });
